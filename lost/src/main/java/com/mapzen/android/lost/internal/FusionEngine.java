@@ -87,6 +87,11 @@ public class FusionEngine extends LocationEngine implements LocationListener {
             networkInterval = request.getInterval();
           }
           break;
+        case LocationRequest.PRIORITY_GPS_ONLY:
+          if (request.getInterval() < gpsInterval) {
+            gpsInterval = request.getInterval();
+          }
+          break;
         case LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY:
         case LocationRequest.PRIORITY_LOW_POWER:
           if (request.getInterval() < networkInterval) {

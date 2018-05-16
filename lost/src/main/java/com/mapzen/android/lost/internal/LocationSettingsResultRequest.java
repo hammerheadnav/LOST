@@ -92,6 +92,9 @@ class LocationSettingsResultRequest extends PendingResult<LocationSettingsResult
           needGps = true;
           needNetwork = true;
           break;
+        case LocationRequest.PRIORITY_GPS_ONLY:
+          needGps = true;
+          break;
         case LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY:
         case LocationRequest.PRIORITY_LOW_POWER:
           needNetwork = true;
