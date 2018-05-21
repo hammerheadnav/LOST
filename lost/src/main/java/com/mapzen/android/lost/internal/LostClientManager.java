@@ -19,6 +19,7 @@ import android.util.Log;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 import static com.mapzen.android.lost.api.FusedLocationProviderApi.KEY_LOCATION_CHANGED;
 import static com.mapzen.android.lost.internal.Clock.MS_TO_NS;
@@ -35,7 +36,7 @@ public class LostClientManager implements ClientManager {
   private final Clock clock;
   private final HandlerFactory handlerFactory;
 
-  private HashMap<LostApiClient, LostClientWrapper> clients;
+  private Map<LostApiClient, LostClientWrapper> clients;
   private Map<LocationListener, LocationRequestReport> listenerToReports;
   private Map<PendingIntent, LocationRequestReport> intentToReports;
   private Map<LocationCallback, LocationRequestReport> callbackToReports;
@@ -44,7 +45,7 @@ public class LostClientManager implements ClientManager {
     this.clock = clock;
     this.handlerFactory = handlerFactory;
 
-    clients = new HashMap<>();
+    clients = new ConcurrentHashMap<>();
     listenerToReports = new HashMap<>();
     intentToReports = new HashMap<>();
     callbackToReports = new HashMap<>();
