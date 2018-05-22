@@ -16,7 +16,6 @@ import android.os.Looper;
 import android.support.annotation.VisibleForTesting;
 import android.util.Log;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
@@ -215,7 +214,7 @@ public class LostClientManager implements ClientManager {
   }
 
   @Override public Map<LostApiClient, Set<LocationListener>> getLocationListeners() {
-    final Map<LostApiClient, Set<LocationListener>> clientToListeners = new HashMap<>();
+    final Map<LostApiClient, Set<LocationListener>> clientToListeners = new ConcurrentHashMap<>();
     for (LostApiClient client : clients.keySet()) {
       clientToListeners.put(client, clients.get(client).locationListeners());
     }
@@ -224,7 +223,7 @@ public class LostClientManager implements ClientManager {
   }
 
   @Override public Map<LostApiClient, Set<PendingIntent>> getPendingIntents() {
-    final Map<LostApiClient, Set<PendingIntent>> clientToPendingIntents = new HashMap<>();
+    final Map<LostApiClient, Set<PendingIntent>> clientToPendingIntents = new ConcurrentHashMap<>();
     for (LostApiClient client : clients.keySet()) {
       clientToPendingIntents.put(client, clients.get(client).pendingIntents());
     }
@@ -233,7 +232,7 @@ public class LostClientManager implements ClientManager {
   }
 
   @Override public Map<LostApiClient, Set<LocationCallback>> getLocationCallbacks() {
-    final Map<LostApiClient, Set<LocationCallback>> clientToLocationCallbacks = new HashMap<>();
+    final Map<LostApiClient, Set<LocationCallback>> clientToLocationCallbacks = new ConcurrentHashMap<>();
     for (LostApiClient client : clients.keySet()) {
       clientToLocationCallbacks.put(client, clients.get(client).locationCallbacks());
     }
