@@ -8,9 +8,9 @@ import com.mapzen.android.lost.api.LostApiClient;
 import android.app.PendingIntent;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Manages requests for {@link ClientCallbackWrapper}s so that the system can properly remove
@@ -22,7 +22,7 @@ public class LostRequestManager implements RequestManager {
   private Map<ClientCallbackWrapper, List<LocationRequest>> clientCallbackToLocationRequests;
 
   LostRequestManager() {
-    clientCallbackToLocationRequests = new HashMap<>();
+    clientCallbackToLocationRequests = new ConcurrentHashMap<>();
   }
 
   public static LostRequestManager shared() {

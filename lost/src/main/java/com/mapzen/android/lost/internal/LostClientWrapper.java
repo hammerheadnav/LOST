@@ -7,10 +7,9 @@ import com.mapzen.android.lost.api.LostApiClient;
 import android.app.PendingIntent;
 import android.os.Looper;
 
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Wraps an instance of {@link LostApiClient} along with its registered {@link LocationListener},
@@ -19,10 +18,10 @@ import java.util.Set;
 class LostClientWrapper {
   private final LostApiClient client;
 
-  private Set<LocationListener> locationListeners = new HashSet<>();
-  private Set<PendingIntent> pendingIntents = new HashSet<>();
-  private Set<LocationCallback> locationCallbacks = new HashSet<>();
-  private Map<LocationCallback, Looper> looperMap = new HashMap<>();
+  private Set<LocationListener> locationListeners = new ConcurrentHashSet<>();
+  private Set<PendingIntent> pendingIntents = new ConcurrentHashSet<>();
+  private Set<LocationCallback> locationCallbacks = new ConcurrentHashSet<>();
+  private Map<LocationCallback, Looper> looperMap = new ConcurrentHashMap<>();
 
   LostClientWrapper(LostApiClient client) {
     this.client = client;

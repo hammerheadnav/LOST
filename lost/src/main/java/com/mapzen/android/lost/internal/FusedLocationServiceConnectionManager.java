@@ -7,7 +7,6 @@ import android.content.Context;
 import android.os.IBinder;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Set;
 
 public class FusedLocationServiceConnectionManager {
@@ -25,7 +24,7 @@ public class FusedLocationServiceConnectionManager {
   Set<ConnectionCallbacks> connectionCallbacks;
 
   public FusedLocationServiceConnectionManager() {
-    connectionCallbacks = new HashSet<>();
+    connectionCallbacks = new ConcurrentHashSet<>();
     connectState = ConnectState.IDLE;
   }
 

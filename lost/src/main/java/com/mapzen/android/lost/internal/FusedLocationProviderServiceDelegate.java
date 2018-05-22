@@ -14,9 +14,9 @@ import android.support.annotation.VisibleForTesting;
 import android.util.Log;
 
 import java.io.File;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import static android.Manifest.permission.ACCESS_COARSE_LOCATION;
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
@@ -33,7 +33,7 @@ public class FusedLocationProviderServiceDelegate implements LocationEngine.Call
   public FusedLocationProviderServiceDelegate(Context context) {
     this.context = context;
     locationEngine = new FusionEngine(context, this);
-    callbacks = new HashMap<>();
+    callbacks = new ConcurrentHashMap<>();
   }
 
   public void add(IFusedLocationProviderCallback callback) {
