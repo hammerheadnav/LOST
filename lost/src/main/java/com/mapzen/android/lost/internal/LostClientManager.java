@@ -46,9 +46,9 @@ public class LostClientManager implements ClientManager {
     this.handlerFactory = handlerFactory;
 
     clients = new ConcurrentHashMap<>();
-    listenerToReports = new HashMap<>();
-    intentToReports = new HashMap<>();
-    callbackToReports = new HashMap<>();
+    listenerToReports = new ConcurrentHashMap<>();
+    intentToReports = new ConcurrentHashMap<>();
+    callbackToReports = new ConcurrentHashMap<>();
   }
 
   public static LostClientManager shared() {
