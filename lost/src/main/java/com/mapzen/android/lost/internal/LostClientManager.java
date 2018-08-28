@@ -279,6 +279,7 @@ public class LostClientManager implements ClientManager {
       if (clientToObj.get(client) != null) {
         for (final T obj : clientToObj.get(client)) {
           LocationRequestReport report = objToLocationRequest.get(obj);
+          if (report == null) break;
           LocationRequest request = report.locationRequest;
           Location lastReportedLocation = report.location;
           if (lastReportedLocation == null) {
